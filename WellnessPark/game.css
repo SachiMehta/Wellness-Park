@@ -1,0 +1,28 @@
+.i, iframe {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+iframe {
+    display: block;
+    border-style: none;
+}
+
+
+.alert {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  padding-left: 10px !important;
+  font-size: 20px !important;
+}
+
+
+body {
+  /* background-image: url('img_girl.jpg'); */
+  font-family: 'Lexend Exa', sans-serif !important;
+  background-color: #faf8ef !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

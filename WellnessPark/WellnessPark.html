@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <title>Wellness Park</title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100;400&display=swap" rel="stylesheet">
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div style="width:100%;">
+  <img id="img_ID" src="img/nav.png" usemap="#map" border="0" width="100%" alt="" />
+</div>
+<map id="map_ID" name="map">
+  <area shape="rect" coords="775, 414, 1044, 586" onmouseover="hover('play');" onmouseout="unhover();"
+    onclick="openNav('gamesOverlay')" />
+
+  <area shape="poly" coords="0,414, 0,851, 1484,849, 980,736, 302,661, 262,412" onmouseover="hover('relax');"
+    onmouseout="unhover();" onclick="openNav('inspiringOverlay')" />
+
+  <area shape="poly" coords="638,5, 1181,312, 1089,685, 1336,707, 1295,385, 1514,199, 1514,2"
+    onmouseover="hover('productivity');" onmouseout="unhover();" onclick="openNav('productivityOverlay')" />
+
+  <area shape="circle" coords="80, 81, 36" onmouseover="hover('home');" onmouseout="unhover();"
+    onclick="window.location.href='index.html';" />
+
+  <area shape="circle" coords="189, 81, 32" onmouseover="hover('settings');" onmouseout="unhover();"
+    onclick="openNav('mySidebar')" />
+</map>
+
+<body id="mainBody">
+
+
+  <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  </style>
+
+
+  <!-- sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('mySidebar')">×</a>
+    <span class="setting">Ambiance</span>
+    <label class="switch">
+      <input onclick="music()" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    <p style="clear: both;"></p>
+
+    <audio id="player">
+      <source src='img/nature.mp3' type='audio/mpeg' />
+    </audio>
+  </div>
+
+  <!-- overlays -->
+  <div id="buddahOverlay" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('buddahOverlay')">&times;</a>
+    <div class="overlay-content">
+      <h1>Meditation</h1>
+
+
+      <!-- include types in how to part  -->
+    </div>
+  </div>
+  <!-- oimg = inside images -->
+
+  <div id="inspiringOverlay" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('inspiringOverlay')">&times;</a>
+    <div class="overlay-content">
+
+      <h1>Relax</h1>
+
+      <br><br><br><br><br><br>
+      <p id="breatheWord">breathe</p><br><br>
+
+      <div id="breathe"></div>
+
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+      <div class="container">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+
+            <div class="item active">
+              <img
+                src="https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Los Angeles" style="width:100%;">
+              <div class="carousel-caption">
+                <h3>“We need to accept that we won’t always make the right decisions, that we’ll screw up royally
+                  sometimes―understanding that failure is not the opposite of success, it’s part of success.”</h3>
+                <p>―Arianna Huffington</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <img
+                src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Chicago" style="width:100%;">
+              <div class="carousel-caption">
+                <h3>“Whatever you are, be a good one.” </h3>
+                <p>―Abraham Lincoln</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <img
+                src="https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="New York" style="width:100%;">
+              <div class="carousel-caption">
+                <h3>“If you can dream it, you can do it.” </h3>
+                <p>―Walt Disney</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="source" href="https://www.oberlo.com/blog/motivational-quotes">Oblero Motivational Quotes</a>
+      <!-- credit to href="https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_carousel2&stacked=h" -->
+    </div>
+  </div>
+
+  <div id="productivityOverlay" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('productivityOverlay')">&times;</a>
+
+    <div class="overlay-content">
+      <h1>Productivity</h1>
+      <br>
+      <br>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <div class="timer"></div>
+      <!-- <a class="source" href="https://www.youtube.com/watch?v=PIiMSMz7KzM">How to build a Countdown Timer in JavaScript - dcode</a> -->
+    </div>
+  </div>
+
+  <div id="gamesOverlay" class="overlay">
+    <h1 style="text-align: center;">Play</h1>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('gamesOverlay')">&times;</a>
+    <div class="overlay-content">
+      <div class="gameIcons">
+        <a href="2048.html"> <img class="gameIcons"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/1200px-2048_logo.svg.png"></a>
+        <a href="spaceInvaders.html"><img class="gameIcons"
+            src="https://play-lh.googleusercontent.com/0goocG7RJZDZ41ShfBPl-h7ctwHKHjqzn4nSImyL8_RWyXqeYNKw-CdGAKhgPGZG5Es"></a>
+        <p style="clear: both;"></p>
+        <a href="popstar.html"><img class="gameIcons"
+            src="https://play-lh.googleusercontent.com/XSi8SDQYURKWT0JGzOzjqoABys5SdsJu27MtxDPVetnOaUU6g1MJu1mhbPQNrF5KZ06W=w240-h480-rw"></a>
+        <a href="tetris.html"><img class="gameIcons"
+            src="https://www.pngmart.com/files/13/Tetris-Game-PNG-Transparent-Image.png"></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="supportOverlay" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('supportOverlay')">&times;</a>
+    <div class="overlay-content">
+      <h1>Support</h1>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
